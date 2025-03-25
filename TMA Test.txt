@@ -60,6 +60,7 @@ Usable range            - 1.2.5.1 - 1.2.5.254
 3. Coverage test 100%
    All 7 principal of test keys
    1 security issue
+   functional & non-functional test
 		Create test cases to verify the login function of a web page of a company. 
 		This web page to manage day off of staff.
 		There are 3 roles of accounts such as admin, manager and staff. 

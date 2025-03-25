@@ -3,3 +3,4 @@ flask-testing
 pytest
 pytest-cov
 coverage
+selenium
