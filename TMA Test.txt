@@ -1,0 +1,97 @@
+1.
+	1.2.3.4
+	1.2.5.6
+On same subnet? Why?
+
+Class A: 
+	1.2.3.4/8
+Host address            - 1.2.3.4
+Network address         - 1.0.0.0
+Network mask            - 255.0.0.0
+Network range           - 1.0.0.0 - 1.255.255.255
+Usable range            - 1.0.0.1 - 1.255.255.254
+
+	1.2.5.6/8
+Host address            - 1.2.5.6
+Network address         - 1.0.0.0
+Network mask            - 255.0.0.0
+Network range           - 1.0.0.0 - 1.255.255.255
+Usable range            - 1.0.0.1 - 1.255.255.254
+
+==> Class A on same subnet / same network.
+
+Class B:
+	1.2.3.4/16
+Host address            - 1.2.3.4
+Network address         - 1.2.0.0
+Network mask            - 255.255.0.0
+Network range           - 1.2.0.0 - 1.2.255.255
+Usable range            - 1.2.0.1 - 1.2.255.254
+
+	1.2.5.6/16
+Host address            - 1.2.5.6
+Network address         - 1.2.0.0
+Network mask            - 255.255.0.0
+Network range           - 1.2.0.0 - 1.2.255.255
+Usable range            - 1.2.0.1 - 1.2.255.254
+
+==> Class B on same subnet / same network.
+
+Class C:
+	1.2.3.4/24
+Host address            - 1.2.3.4
+Network address         - 1.2.3.0
+Network mask            - 255.255.255.0
+Network range           - 1.2.3.0 - 1.2.3.255
+Usable range            - 1.2.3.1 - 1.2.3.254
+
+	1.2.5.6/24
+Host address            - 1.2.5.6
+Network address         - 1.2.5.0
+Network mask            - 255.255.255.0
+Network range           - 1.2.5.0 - 1.2.5.255
+Usable range            - 1.2.5.1 - 1.2.5.254
+
+==> Class C on different subnet / different network.
+
+2. Python
+	String Xuyen -> enuXy
+
+3. Coverage test 100%
+   All 7 principal of test keys
+   1 security issue
+		Create test cases to verify the login function of a web page of a company. 
+		This web page to manage day off of staff.
+		There are 3 roles of accounts such as admin, manager and staff. 
+		Users with admin role can manage acount (create/modify/delete and reset password). 
+		Users with manager role can manage the day off of staff (approve/reject). 
+		Users with staff role can submit a day off. 
+		An user has multiple roles. 
+		There is a specific home page for each user group after login successfully. 
+		If a user logins with wrong password 5 times, admin will receive a notify. 
+		They will reset the password of this user. 
+		The user will receive a email about new password.
+
+4. Programming exercise:
+	Write a program to revert input string to output like below:
+		input: 	'Automation'
+		output: 'oitamotuAn'
+
+5. Shell script compare network subnet of ipv4 & ipv6
+	2001::1
+	2001:2::2
+
+6. Protocol operates between Layer 2 (Data Link) - 3 (Network) of the OSI model 
+	-> Address Resolution Protocol (ARP):
+	
+	Layer 2 (Data Link):
+This layer deals with physical addressing (MAC addresses) and frame transmission between directly connected devices.
+
+	Layer 3 (Network):
+This layer handle logical address (IP addresses) and routing data packets across networks.
+
+ARP role:
+	bridges the gap between these 2 layers by translating IP addresses to MAC addresses.
+
+How it Works:
+	When a device wants to send data to another device on the same network, it first uses ARP to find the MAC address associated with the destination IP address. 

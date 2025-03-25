@@ -1,0 +1,86 @@
+<html>
+  <head>
+    <title>Admin page</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- <link href="static/bootstrap.min.css" rel="stylesheet" media="screen"> -->
+  </head>
+  <body>
+    <div class="container">
+      <h1>Welcome {{username}}! This is admin page</h1>
+      <a href="{{ url_for('manage_accounts') }}" class="btn btn-secondary">Refresh Notifications</a>
+      <br>
+      {% if notifications %}
+        <div class="alert alert-warning">
+          <h4>Notifications:</h4>
+          <ul>
+            {% for notification in notifications %}
+              <li>{{ notification }}</li>
+            {% endfor %}
+          </ul>
+        </div>
+      {% endif %}
+      {% if message %}
+        <p class="alert alert-success"><strong>Success:</strong> {{ message }}</p>
+      {% endif %}
+      {% if error %}
+        <p class="error"><strong>Error:</strong> {{ error }}
+      {% endif %}
+      <br>
+    </div>
+
+    <div>
+      <h1>Manage Accounts</h1>
+      <form method="POST" action="{{ url_for('manage_accounts') }}">
+        <label>Action:</label>
+        <select id="action" name="action" onchange="toggleFields()">
+            <option value="create">Create</option>
+            <option value="modify">Modify</option>
+            <option value="delete">Delete</option>
+            <option value="reset_password">Reset Password</option>
+        </select><br>
+        <label>Username:</label>
+        <input type="text" name="username" required><br>
+        <label>Password:</label>
+        <input type="password" id="password" name="password" disabled><br>
+        <label>Roles:</label>
+        <div id="roles">
+          <input type="checkbox" class="role-checkbox" name="roles" value="admin" disabled> Admin
+          <input type="checkbox" class="role-checkbox" name="roles" value="manager" disabled> Manager
+          <input type="checkbox" class="role-checkbox" name="roles" value="staff" disabled> Staff
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </form>
+    </div>
+
+    <div>
+      <a href="{{ url_for('logout') }}" class="btn btn-danger">Logout</a>
+    </div>
+
+    <script>
+      function toggleFields() {
+        const action = document.getElementById("action").value;
+        const passwordField = document.getElementById("password");
+        const rolesField = document.getElementById("roles");
+        const rolesCheckboxes = document.querySelectorAll(".role-checkbox");
+
+        passwordField.disabled = true;
+        rolesField.disabled = true;
+        rolesCheckboxes.forEach(checkbox => checkbox.disabled = true);
+
+        if (action === "create") {
+          passwordField.disabled = false;
+          rolesCheckboxes.forEach(checkbox => checkbox.disabled = false);
+        } else if (action === "modify") {
+          rolesCheckboxes.forEach(checkbox => checkbox.disabled = false);
+        } else if (action === "delete") {
+          // No additional fields need to be enabled for delete
+        } else if (action === "reset_password") {
+          passwordField.disabled = false;
+        }
+      }
+
+      document.addEventListener("DOMContentLoaded", toggleFields);
+    </script>
+  </body>
+</html>
+

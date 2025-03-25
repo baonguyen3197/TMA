@@ -1,0 +1,66 @@
+<html>
+  <head>
+    <title>Manager page</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- <link href="static/bootstrap.min.css" rel="stylesheet" media="screen"> -->
+  </head>
+  <body>
+    <div class="container">
+      <h1>Welcome {{username}}! This is manager page</h1>
+      <br>
+      {% if error %}
+        <p class="error"><strong>Error:</strong> {{ error }}</p>
+      {% endif %}
+      <br>
+    </div>
+
+    <div>
+      <h1>Manage Day-Off Requests</h1>
+      <a href="{{ url_for('manage_day_off') }}" class="btn btn-secondary">Refresh Requests</a>
+      <form method="POST" action="{{ url_for('manage_day_off') }}">
+        <table border="1">
+            <thead>
+                <tr>
+                    <th>Username</th>
+                    <th>Date</th>
+                    <th>Reason</th>
+                    <th>Status</th>
+                    <th>Approve</th>
+                    <th>Reject</th>
+                </tr>
+            </thead>
+            <tbody>
+              {% for request in requests %}
+                <tr>
+                    <td>{{ request.username }}</td>
+                    <td>{{ request.date }}</td>
+                    <td>{{ request.reason }}</td>
+                    <td>{{ request.status }}</td>
+                    <td>
+                        {% if request.status == "Pending" %}
+                            <input type="radio" name="{{ loop.index0 }}" value="approve">
+                        {% endif %}
+                    </td>
+                    <td>
+                        {% if request.status == "Pending" %}
+                            <input type="radio" name="{{ loop.index0 }}" value="reject">
+                        {% endif %}
+                    </td>
+                </tr>
+              {% endfor %}
+            </tbody>
+        </table>
+        <ul>
+          {% for request in requests %}
+              <li>{{ request.username }} requested a day off on {{ request.date }}: {{ request.status }}</li>
+          {% endfor %}
+        </ul>
+        <button type="submit" class="btn btn-primary">Submit Decisions</button>
+      </form>
+    </div>
+
+    <div>
+      <a href="{{ url_for('logout') }}" class="btn btn-danger">Logout</a>
+    </div>
+  </body>
+</html>

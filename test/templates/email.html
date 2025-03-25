@@ -1,0 +1,28 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Email Notifications</title>
+    <!-- <link href="{{ url_for('static', filename='bootstrap.min.css') }}" rel="stylesheet" media="screen"> -->
+</head>
+<body>
+    <div class="container">
+        <h1>Email Notifications</h1>
+        <br>
+        {% if notifications %}
+            <div class="alert alert-info">
+                <h4>Notifications:</h4>
+                <ul>
+                    {% for notification in notifications %}
+                        <li>{{ notification }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+        {% else %}
+            <p>No notifications to display.</p>
+        {% endif %}
+        <br>
+        <a href="{{ url_for('index') }}" class="btn btn-primary">Back to Home</a>
+    </div>
+</body>
+</html>

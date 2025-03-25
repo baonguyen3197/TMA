@@ -1,0 +1,14 @@
+<html>
+  <head>
+    <title>Error page</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- <link href="static/bootstrap.min.css" rel="stylesheet" media="screen"> -->
+  </head>
+  <body>
+    <div class="container">
+        <h1>Error</h1>
+        <p>You cannot access another user's page.</p>
+        <a href="{{ url_for('role_page', role=role, username=username) }}" class="btn btn-primary">Go back</a>
+    </div>
+  </body>
+</html>

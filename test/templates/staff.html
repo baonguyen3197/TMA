@@ -1,0 +1,66 @@
+<html>
+  <head>
+    <title>Staff page</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- <link href="static/bootstrap.min.css" rel="stylesheet" media="screen"> -->
+  </head>
+  <body>
+    <div class="container">
+      <h1>Welcome {{username}}! This is staff page</h1>
+      <br>
+      {% if error %}
+        <p class="error"><strong>Error:</strong> {{ error }}</p>
+      {% endif %}
+      <br>
+    </div>
+    
+    {% if notifications %}
+      <div class="alert alert-info">
+        <h4>Notifications:</h4>
+        <ul>
+          {% for notification in notifications %}
+            <li>{{ notification }}</li>
+          {% endfor %}
+        </ul>
+      </div>
+    {% endif %}
+
+    <div>
+      <h1>Submit Day-Off Request</h1>
+      <form id="day-off-form">
+          <label for="date">Date:</label>
+          <input type="date" id="date" name="date" required><br>
+          <label for="reason">Reason:</label>
+          <textarea id="reason" name="reason" required></textarea><br>
+          <button type="submit">Submit</button>
+      </form>
+      <div id="message"></div>
+    </div>
+
+    <div>
+      <a href="{{ url_for('logout') }}" class="btn btn-danger">Logout</a>
+    </div>
+
+    <script>
+      document.getElementById('day-off-form').addEventListener('submit', async (e) => {
+          e.preventDefault();
+          const formData = new FormData(e.target);
+
+          const response = await fetch('/staff', {
+              method: 'POST',
+              body: formData
+          });
+
+          const result = await response.json();
+          const messageDiv = document.getElementById('message');
+          if (response.ok) {
+              // messageDiv.style.color = 'green';
+              messageDiv.textContent = result.message;
+          } else {
+              // messageDiv.style.color = 'red';
+              messageDiv.textContent = result.error;
+          }
+      });
+    </script>
+  </body>
+</html>
