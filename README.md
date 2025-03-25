@@ -7,7 +7,7 @@ Convert string:  Xuyen -> enuXy using Python
 # -------------------------------------------------------------------------- #
 
 ## --- Q3 --- ##
-# Run Login Application
+# run Login Application
 
     cd test/
     python ./q3.py
@@ -24,7 +24,7 @@ plugins: cov-6.0.0
 collected 40 items                                                                                                                    
 test\test_q3.py ........................................................ [100%]
 
----------- coverage: platform win32, python 3.13.2-final-0 -----------
+coverage: platform win32, python 3.13.2-final-0
 Name         Stmts   Miss  Cover   Missing
 ------------------------------------------
 test\q3.py     144      1    99%   226
