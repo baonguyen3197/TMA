@@ -213,11 +213,9 @@
 
 #!/bin/bash
 
-# Function to validate basic IPv6 address format
 validate_ipv6_format() {
     local ipv6="$1"
 
-    # Check for multiple :: sequences
     if [[ $(echo "$ipv6" | grep -o "::" | wc -l) -gt 1 ]]; then
         echo "Error: IPv6 address cannot contain multiple '::' sequences: $ipv6" >&2
         return 1
@@ -308,7 +306,6 @@ expand_ipv6() {
     echo "$expanded"
 }
 
-# Function to validate an IPv6 address and return its expanded form
 validate_ipv6() {
     local ipv6="$1"
     local expanded
@@ -330,7 +327,6 @@ validate_ipv6() {
     echo "$expanded"
 }
 
-# Function to compare two IPv6 addresses (exact match, no subnet)
 ipv6_compare() {
     local ipv6_1="$1"
     local ipv6_2="$2"

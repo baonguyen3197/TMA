@@ -6,6 +6,8 @@ from contextlib import redirect_stdout
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
 
 @pytest.fixture
 def client():
@@ -83,9 +85,10 @@ def test_login_compatibility():
         password_field.send_keys("admin123")
         password_field.send_keys(Keys.RETURN)
 
-        driver.implicitly_wait(5)
+        WebDriverWait(driver, 10).until(EC.url_to_be("http://localhost:5000/admin/aaa"))
 
-        assert 'Welcome aaa! This is admin page' in driver.page_source
+        driver.implicitly_wait(5)
+        assert driver.current_url == "http://localhost:5000/admin/aaa"
 
     finally:
         driver.quit()

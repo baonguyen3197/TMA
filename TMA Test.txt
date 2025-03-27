@@ -96,3 +96,10 @@ ARP role:
 
 How it Works:
 	When a device wants to send data to another device on the same network, it first uses ARP to find the MAC address associated with the destination IP address. 
+
+
+192.168.2.0/24
+
+Broadcast: 192.168.2.255
+Network: 192.168.2.0
+Host: 192.168.2.1 - 192.168.2.254
